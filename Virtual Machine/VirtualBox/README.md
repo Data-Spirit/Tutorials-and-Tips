@@ -225,7 +225,7 @@ clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de System
    sudo chmod 700 /root/bin/sign-vbox-modules
    ```
 
-   -Puis l'executer en tant que `root`.
+   - Puis l'executer en tant que `root`.
    ```bash
    sudo -i sign-vbox-modules
    ```
