@@ -1,8 +1,8 @@
-#
+# VirtualBox + Secureboot
 
 Voici les étapes que j'ai suivies pour activer VirtualBox sur mon ordinateur 
 portable **sans désactiver UEFI Secure Boot**. Elles sont presque identiques 
-au processus décrit sur le [blog d'Øyvind Stegard][blog], à quelques détails 
+au processus décrit sur le [blog d'Øyvind Stegard][oyvind_blog], à quelques détails 
 clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de Systemtap][systemtap].
 
 ---
@@ -10,7 +10,7 @@ clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de System
 ### 1 - Installation de VirtualBox
 
 1. Installation du paquet `VirtualBox` (cela peut différer selon votre plateforme).<br>
-   (Vous pouvvez avoir plus de détails en consultant la documentation [Ubuntu-fr.org/VirtualBox][Ubuntu_install_vbox]).
+   (Vous pouvvez avoir plus de détails en consultant la documentation [Ubuntu-fr.org/VirtualBox][ubuntu_install_vbox]).
    
    <details>
    <summary>Installation par les dépôts officiels d'Ubuntu</summary>
@@ -48,7 +48,11 @@ clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de System
    <pre lang="bash">Futur commandes</pre><br>
    </details>
 
+<br>
+
 ---
+
+<br>
 
 ### 2 - Signature des modules du noyau de VirtualBox.
 1. Création des clès de chiffrement : Création d'une paire de clés RSA pour signer les modules du noyau.
@@ -84,15 +88,15 @@ clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de System
       
       - En une seule commande :
 
-      ⮕ Version de la *commande unique* **SANS** le paramètre `-nodes`:
-       ```bash
-       sudo openssl req -new -x509 -newkey rsa:2048 -keyout ${out_dir}/MOK.priv -outform DER -out ${out_dir}/MOK.der -days 36500 -subj "/CN=${name}/"
-       ```
+         - ⮕ Version de la *commande unique* **SANS** le paramètre `-nodes`:
+         ```bash
+         sudo openssl req -new -x509 -newkey rsa:2048 -keyout ${out_dir}/MOK.priv -outform DER -out ${out_dir}/MOK.der -days 36500 -subj "/CN=${name}/"
+         ```
        
-      ⮕ Version de la *commande unique* **AVEC** le paramètre `-nodes`:
-       ```bash
-       sudo openssl req -new -x509 -newkey rsa:2048 -keyout ${out_dir}/MOK.priv -outform DER -out ${out_dir}/MOK.der -nodes -days 36500 -subj "/CN=${name}/"
-       ```
+         - ⮕ Version de la *commande unique* **AVEC** le paramètre `-nodes`:
+         ```bash
+         sudo openssl req -new -x509 -newkey rsa:2048 -keyout ${out_dir}/MOK.priv -outform DER -out ${out_dir}/MOK.der -nodes -days 36500 -subj "/CN=${name}/"
+         ```
     - Puis on change les droits des deux clefs:
    ```bash
    sudo chmod 600 ${out_dir}/MOK*
@@ -118,27 +122,37 @@ clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de System
    que ce soit le même que celui de la phrase secrète de la clé de signature.
 
 
-3. Redémarrez votre machine pour accéder à l'utilitaire de gestion MOK EFI.
+3. Redémarrez votre machine pour accéder à l'utilitaire de gestion MOK EFI.<br>
 
-   - Selectionner _Enroll MOK_.
-
+   - Selectionner _**Enroll MOK**_.<br>
    ![Enroll MOK][screen-enroll mok]
 
-   - Selectionner _Continue_.
+   [screen-enroll mok]: https://sourceware.org/systemtap/wiki/SecureBoot?action=AttachFile&do=get&target=Screenshot_kvm-rawhide-64-uefi-1_2014-02-27_14_00_13_crop.png
+   <br>
 
+   - Selectionner _**Continue**_.<br>
    ![Continue][screen-continue]
 
-   - Selectionner _Yes_ to enroll the keys.
+   [screen-continue]: https://sourceware.org/systemtap/wiki/SecureBoot?action=AttachFile&do=get&target=Screenshot_kvm-rawhide-64-uefi-1_2014-02-27_14_00_35_crop.png
+   <br>
 
+   - Selectionner _**Yes**_ to enroll the keys.<br>
    ![Confirm][screen-confirm]
 
-   - Enter the mot de passe défini plus tôt **(ne pas confondre avec la phrase secrète)**.
+   [screen-confirm]: https://sourceware.org/systemtap/wiki/SecureBoot?action=AttachFile&do=get&target=Screenshot_kvm-rawhide-64-uefi-1_2014-02-27_14_00_44_crop.png
+   <br>
 
+   - Enter the mot de passe défini plus tôt **(ne pas confondre avec la phrase secrète)**.<br>
    ![Enter password][screen-password]
 
-   - Selectionner _OK_ to reboot.
+   [screen-password]: https://sourceware.org/systemtap/wiki/SecureBoot?action=AttachFile&do=get&target=Screenshot_kvm-rawhide-64-uefi-1_2014-02-27_14_00_53_crop.png
+   <br>
 
+   - Selectionner _**OK**_ to reboot.<br>
    ![Reboot][screen-reboot]
+
+   [screen-reboot]: https://sourceware.org/systemtap/wiki/SecureBoot?action=AttachFile&do=get&target=Screenshot_kvm-rawhide-64-uefi-1_2014-02-27_14_01_06_crop.png
+   <br>
 
    - Vérifiez que la clé a été chargée en la cherchant dans la sortie de
 
@@ -146,7 +160,11 @@ clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de System
    dmesg | grep '[U]EFI.*cert'
    ```
 
+<br>
+
 ---
+
+<br>
 
 ### 3 - Création d'un script pour l'automatisation de la procédure.
 
@@ -189,9 +207,9 @@ clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de System
    il dispose de :sparkles: **C O U L E U R S** :sparkles:. Deuxièmement, il 
    utilise la variable d'environnement magique [`$KBUILD_SIGN_PIN`][kbuild_sign_pin] 
    qui n'apparaît _nulle part_ dans l'utilisation de `sign-file`. J'ai fouillé dans 
-   le [Linux source][source] de Linux pour la trouver, mais avec du recul j'aurais 
+   le [Linux source][linux_source] de Linux pour la trouver, mais avec du recul j'aurais 
    pu simplement lire la documentation sur la [signature des modules][module-signing]... 
-   J'ai écrit ce script dans le fichier `/usr/bin/sign-vbox-modules` car c'est 
+   J'ai copié ce script dans le fichier `/usr/bin/sign-vbox-modules` car c'est 
    généralement sur le `$PATH` de `root`.
 
    
@@ -212,25 +230,37 @@ clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de System
    sudo modprobe vboxdrv
    ```
 
+<br>
+
 ---
+
+<br>
 
 ### 4 - Liens utiles.
+- [Documentation Ubuntu: VirtualBox][ubuntu_vbox] _(fr)_
+- [Documentation Ubuntu: Installation de VirtualBox][ubuntu_install_vbox] _(fr)_
+- [GitHub de "reillysiemens"][reillysiemens_github] _(en)_
+- [Doc pour installer "VirtualBox + secureboot", provenant du github de "reillysiemens"][reillysiemens_doc_vbox] _(en)_
+- [Blog d'oyvind pour installer VirtualBox avec le secureboot activé][oyvind_blog] _(en)_
+- _...à compléter..._
 
 
 
 
+
+<br>
 
 ---
 
-[blog]: https://stegard.net/2016/10/virtualbox-secure-boot-ubuntu-fail/
+<br>
+
+[oyvind_blog]: https://stegard.net/2016/10/virtualbox-secure-boot-ubuntu-fail/
 [systemtap]: https://sourceware.org/systemtap/wiki/SecureBoot
-[screen-enroll mok]: https://sourceware.org/systemtap/wiki/SecureBoot?action=AttachFile&do=get&target=Screenshot_kvm-rawhide-64-uefi-1_2014-02-27_14_00_13_crop.png
-[screen-continue]: https://sourceware.org/systemtap/wiki/SecureBoot?action=AttachFile&do=get&target=Screenshot_kvm-rawhide-64-uefi-1_2014-02-27_14_00_35_crop.png
-[screen-confirm]: https://sourceware.org/systemtap/wiki/SecureBoot?action=AttachFile&do=get&target=Screenshot_kvm-rawhide-64-uefi-1_2014-02-27_14_00_44_crop.png
-[screen-password]: https://sourceware.org/systemtap/wiki/SecureBoot?action=AttachFile&do=get&target=Screenshot_kvm-rawhide-64-uefi-1_2014-02-27_14_00_53_crop.png
-[screen-reboot]: https://sourceware.org/systemtap/wiki/SecureBoot?action=AttachFile&do=get&target=Screenshot_kvm-rawhide-64-uefi-1_2014-02-27_14_01_06_crop.png
 [kbuild_sign_pin]: https://github.com/torvalds/linux/blob/12491ed354d23c0ecbe02459bf4be58b8c772bc8/scripts/sign-file.c#L236
-[source]: https://github.com/torvalds/linux/blob/12491ed354d23c0ecbe02459bf4be58b8c772bc8/scripts/sign-file.c
+[linux_source]: https://github.com/torvalds/linux/blob/12491ed354d23c0ecbe02459bf4be58b8c772bc8/scripts/sign-file.c
 [module-signing]: https://www.kernel.org/doc/html/v4.20/admin-guide/module-signing.html#manually-signing-modules
 
-[Ubuntu_install_vbox]: https://doc.ubuntu-fr.org/virtualbox#installation
+[ubuntu_vbox]: https://doc.ubuntu-fr.org/virtualbox
+[ubuntu_install_vbox]: https://doc.ubuntu-fr.org/virtualbox#installation
+[reillysiemens_github]: https://github.com/reillysiemens/
+[reillysiemens_doc_vbox]: https://gist.github.com/reillysiemens/ac6bea1e6c7684d62f544bd79b2182a4
