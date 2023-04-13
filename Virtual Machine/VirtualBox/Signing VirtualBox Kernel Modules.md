@@ -5,7 +5,11 @@ portable **sans désactiver UEFI Secure Boot**. Elles sont presque identiques
 au processus décrit sur le [blog d'Øyvind Stegard][oyvind_blog], à quelques détails 
 clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de Systemtap][systemtap].
 
+<br>
+
 ---
+
+<br>
 
 ### 1 - Installation de VirtualBox
 
@@ -88,15 +92,16 @@ clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de System
       
       - En une seule commande :
 
-         - ⮕ Version de la *commande unique* **SANS** le paramètre `-nodes`:
-         ```bash
-         sudo openssl req -new -x509 -newkey rsa:2048 -keyout ${out_dir}/MOK.priv -outform DER -out ${out_dir}/MOK.der -days 36500 -subj "/CN=${name}/"
-         ```
-       
          - ⮕ Version de la *commande unique* **AVEC** le paramètre `-nodes`:
          ```bash
          sudo openssl req -new -x509 -newkey rsa:2048 -keyout ${out_dir}/MOK.priv -outform DER -out ${out_dir}/MOK.der -nodes -days 36500 -subj "/CN=${name}/"
          ```
+
+         - ⮕ Version de la *commande unique* **SANS** le paramètre `-nodes`:
+         ```bash
+         sudo openssl req -new -x509 -newkey rsa:2048 -keyout ${out_dir}/MOK.priv -outform DER -out ${out_dir}/MOK.der -days 36500 -subj "/CN=${name}/"
+         ```
+
     - Puis on change les droits des deux clefs:
    ```bash
    sudo chmod 600 ${out_dir}/MOK*
@@ -109,7 +114,7 @@ clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de System
    **Le retrait de cette option invitant donc à entrer une passphrase, semble être une 
    bonne idée pour quelque chose d'aussi important qu'une clé de signature de module 
    de noyau.**
-
+<br>
 
 2. Importer la clé MOK ("Machine Owner Key") afin qu'elle puisse être considérée 
    comme fiable par le système.
@@ -117,10 +122,10 @@ clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de System
    ```bash
    sudo mokutil --import /root/module-signing/MOK.der
    ```
-   Cela vous demandera un mot de passe. Le mot de passe est temporaire et 
+   Cela vous demandera un _**mot de passe**_. Le mot de passe est _**temporaire**_ et 
    sera utilisé lors du prochain démarrage. Il n'est **pas** obligatoire 
    que ce soit le même que celui de la phrase secrète de la clé de signature.
-
+<br>
 
 3. Redémarrez votre machine pour accéder à l'utilitaire de gestion MOK EFI.<br>
 
