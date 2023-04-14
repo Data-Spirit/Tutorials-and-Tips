@@ -242,6 +242,7 @@ clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de System
 <br>
 
 ### 4 - Liens utiles.
+- [Site Officiel de VirtualBox par Oracle](https://www.virtualbox.org/wiki/Linux_Downloads) _(en)_
 - [Documentation Ubuntu: VirtualBox][ubuntu_vbox] _(fr)_
 - [Documentation Ubuntu: Installation de VirtualBox][ubuntu_install_vbox] _(fr)_
 - [GitHub de "reillysiemens"][reillysiemens_github] _(en)_
