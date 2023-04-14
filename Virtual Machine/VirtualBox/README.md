@@ -216,7 +216,7 @@ clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de System
    pu simplement lire la documentation sur la [signature des modules][module-signing]... 
    J'ai copié ce script dans le fichier `/usr/bin/sign-vbox-modules` car c'est 
    généralement sur le `$PATH` de `root`.
-
+<br>
    
 2. Exécution du script susmentionné en tant que `root`.
 
@@ -229,6 +229,7 @@ clés près. Les images ici sont empruntées au [Wiki UEFI Secure Boot de System
    ```bash
    sudo -i sign-vbox-modules
    ```
+<br>
 
 3. Load the `vboxdrv` module.
    ```bash
