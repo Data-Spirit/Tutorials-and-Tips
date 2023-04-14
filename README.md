@@ -19,12 +19,20 @@ All the tips for GNU/Linux systems &lt;3
 
 ### Glossaire des différentes documentations présentes sur cette branche de GitHub.
 
+- Liste :  
+  - <details>
+    <summary>VirtualBox + SecureBoot</summary>
+    <blockquote> Tutorial decrivant comment installer VirtualBox avec le SecureBoot activé.
+    </blockquote>
   
-  <details>
-  <summary>VirtualBox + SecureBoot</summary>
-  <blockquote> Tutorial decrivant comment installer VirtualBox avec le SecureBoot activé.
-  </blockquote>
+    [Lien](https://github.com/Data-Spirit/Tutorials-and-Tips/blob/main/Virtual%20Machine/VirtualBox/README.md)
+    </details>
+
+  - <details>
+    <summary>Prompts ChapGPT</summary>
+    <blockquote> A completer
+    </blockquote>
   
-  [Lien](https://github.com/Data-Spirit/Tutorials-and-Tips/blob/main/Virtual%20Machine/VirtualBox/README.md)
-  </details>
+    [Lien](a completer)
+    </details>
 
