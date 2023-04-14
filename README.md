@@ -27,7 +27,7 @@ All the tips for GNU/Linux systems &lt;3
     <blockquote> Tutorial decrivant comment installer VirtualBox avec le SecureBoot activé.
     </blockquote>
   
-    [Lien](https://github.com/Data-Spirit/Tutorials-and-Tips/blob/main/Virtual%20Machine/VirtualBox/README.md)
+    [Lien](https://github.com/Data-Spirit/Tutorials-and-Tips/blob/main/VirtualBox%2BSecureBoot/README.md)
     </details>
 
   - <details>
