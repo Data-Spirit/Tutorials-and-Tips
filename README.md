@@ -9,6 +9,7 @@ All the tips for GNU/Linux systems &lt;3
 
 ### Liens utiles :
   - [Documentation Officielle GitHub](https://docs.github.com/fr/get-started)  _(fr)_
+  - [Table des Emotes GitHub](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md) _(en)_
   - à completer
 
 <br>
