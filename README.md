@@ -1,5 +1,20 @@
-# Tutorials-and-Tips
-All the tips for GNU/Linux systems &lt;3
+<h3 align="center"><img src="https://repository-images.githubusercontent.com/627393902/fb1adb35-2ae6-4a04-aee5-7e9a3d59d09a" alt="logo" height="500px"></h3>
+<p align="center">All the tips for GNU/Linux systems &lt;3</p>
+
+<p align="center">
+<a href="./LICENSE.md"><img src="https://img.shields.io/badge/License-CC--BY--4.0-informational.svg"></a>
+<a href="./README.md"><img src="https://img.shields.io/badge/Documentation-GNU%2FLinux-informational.svg"></a>
+</p>
+
+<p align="center">
+<a href="./LICENSE.md"><img src="https://img.shields.io/badge/License-CC--BY--4.0-informational.svg"></a>
+<a href="./README.md"><img src="https://img.shields.io/badge/Documentation-GNU%2FLinux-informational.svg"></a>
+</p>
+
+
+# <h1 align="center">Documentation</h1>
+<blockquote>Descriptif à completer
+</blockquote>
 
 <br>
 
