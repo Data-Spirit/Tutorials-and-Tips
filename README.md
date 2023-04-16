@@ -27,6 +27,7 @@
   - [Table des Emotes GitHub](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md) _(en)_
   - [Site qui vous aide à choisir une Licence adaptée à votre projet OpenSource](https://choosealicense.com/) _(en)_
   - [Site pour créer les vignettes d'informations et de suivi : "shields.io"](https://shields.io/) _(en)_
+  - [Bibliothèque de Polices d'écriture](https://www.nerdfonts.com/#home) _(en)_
   - à completer
 
 <br>
