@@ -1,4 +1,4 @@
-<h3 align="center"><img src="https://repository-images.githubusercontent.com/627393902/77e677a8-ccf6-4b29-be32-c531558b8a9f" alt="logo" height="500px"></h3>
+<h3 align="center"><img src="https://repository-images.githubusercontent.com/627393902/b3194f4a-8cae-4bbe-94de-46e52a1d4813" alt="logo" height="500px"></h3>
 <p align="center">All the tips for GNU/Linux systems &lt;3</p>
 
 <p align="center">
